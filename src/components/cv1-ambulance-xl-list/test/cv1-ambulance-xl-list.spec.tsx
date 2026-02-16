@@ -7,12 +7,10 @@ describe('cv1-ambulance-xl-list', () => {
       components: [Cv1AmbulanceXlList],
       html: `<cv1-ambulance-xl-list></cv1-ambulance-xl-list>`,
     });
-    expect(page.root).toEqualHtml(`
-      <cv1-ambulance-xl-list>
-        <mock:shadow-root>
-          <slot></slot>
-        </mock:shadow-root>
-      </cv1-ambulance-xl-list>
-    `);
+      const wlList = page.rootInstance as Cv1AmbulanceXlList;
+      const expectedPatients = wlList?.waitingPatients?.length
+
+      const items = page.root.shadowRoot.querySelectorAll("md-list-item");
+      expect(items.length).toEqual(expectedPatients);
   });
 });
