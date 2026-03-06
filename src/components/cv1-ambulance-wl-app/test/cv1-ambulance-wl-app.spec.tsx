@@ -7,11 +7,11 @@ describe('cv1-ambulance-wl-app', () => {
     const page = await newSpecPage({
       url: `http://localhost/entry/@new`,
       components: [Cv1AmbulanceWlApp],
-      html: `<<pfx>-ambulance-wl-app base-path="/"></<pfx>-ambulance-wl-app>`,
+      html: `<cv1-ambulance-wl-app base-path="/"></cv1-ambulance-wl-app>`,
     });
     page.win.navigation = new EventTarget()
-    const child = await page.root.shadowRoot.firstElementChild;
-    expect(child.tagName.toLocaleLowerCase()).toEqual ("<pfx>-ambulance-wl-editor");
+    const child = page.root?.shadowRoot?.firstElementChild as HTMLElement;
+    expect(child.tagName.toLocaleLowerCase()).toEqual("cv1-ambulance-wl-editor");
 
   });
 
@@ -19,10 +19,10 @@ describe('cv1-ambulance-wl-app', () => {
     const page = await newSpecPage({
       url: `http://localhost/ambulance-wl/`,
       components: [Cv1AmbulanceWlApp],
-      html: `<<pfx>-ambulance-wl-app base-path="/ambulance-wl/"></<pfx>-ambulance-wl-app>`,
+      html: `<cv1-ambulance-wl-app base-path="/ambulance-wl/"></cv1-ambulance-wl-app>`,
     });
     page.win.navigation = new EventTarget()
-    const child = await page.root.shadowRoot.firstElementChild;
-    expect(child.tagName.toLocaleLowerCase()).toEqual("<pfx>-ambulance-wl-list");
+    const child = page.root?.shadowRoot?.firstElementChild as HTMLElement;
+    expect(child.tagName.toLocaleLowerCase()).toEqual("cv1-ambulance-wl-list");
   });
 });

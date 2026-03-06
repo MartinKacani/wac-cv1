@@ -55,12 +55,10 @@ export class Cv1AmbulanceWlApp {
         ? <cv1-ambulance-wl-editor entry-id={entryId}
             oneditor-closed={ () => navigate("./list")} >
           </cv1-ambulance-wl-editor>
-        : <cv1-ambulance-wl-list></cv1-ambulance-wl-list>
+        : <cv1-ambulance-wl-list
+            onentry-clicked={ (ev: CustomEvent<string>) => navigate("./entry/" + ev.detail) }>
+          </cv1-ambulance-wl-list>
         }
-
-        <cv1-ambulance-wl-list
-          onentry-clicked={ (ev: CustomEvent<string>)=> navigate("./entry/" + ev.detail) } >
-        </cv1-ambulance-wl-list>
 
       </Host>
     );
