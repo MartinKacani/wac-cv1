@@ -1,11 +1,12 @@
-import { Component, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter,  Host, h } from '@stencil/core';
 
 @Component({
-  tag: 'cv1-ambulance-xl-list',
-  styleUrl: 'cv1-ambulance-xl-list.css',
+  tag: 'cv1-ambulance-wl-list',
+  styleUrl: 'cv1-ambulance-wl-list.css',
   shadow: true,
 })
-export class Cv1AmbulanceXlList {
+export class Cv1AmbulanceWlList {
+  @Event({ eventName: "entry-clicked"}) entryClicked: EventEmitter<string>;
   waitingPatients: any[];
 
   private async getWaitingPatientsAsync(){
@@ -40,8 +41,8 @@ export class Cv1AmbulanceXlList {
     return (
       <Host>
         <md-list>
-          {this.waitingPatients.map(patient =>
-            <md-list-item>
+           {this.waitingPatients.map((patient, index) =>
+            <md-list-item onClick={ () => this.entryClicked.emit(index.toString())}>
               <div slot="headline">{patient.name}</div>
               <div slot="supporting-text">{"Predpokladaný vstup: " + patient.estimatedStart?.toLocaleString()}</div>
                 <md-icon slot="start">person</md-icon>
